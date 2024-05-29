@@ -1,44 +1,37 @@
 Sheba - Hotel Management System
 
 
-Administrator (Sohaib)
+# Administrator (Sohaib)
+1.Login and logout from the system.
 
-Login and logout from the system. 
+2.Register new users (hotel staff, customers) into the system. 
 
-Register new users (hotel staff, customers) into the system. 
+3.Manage existing users by updating their account status. 
 
-Manage existing users by updating their account status. 
+4.Manage the hotel rooms by adding, updating, or removing room details. 
 
-Manage the hotel rooms by adding, updating, or removing room details. 
+# Hotel Staff (Mahmood)
 
- 
+1.Login and logout from the system. 
 
-Hotel Staff (Mahmood)
+2.Manage room reservations. 
 
-Login and logout from the system. 
+3.Check-in and check-out guests. 
 
-Manage room reservations. 
+4.View room availability and booking history. 
 
-Check-in and check-out guests. 
+# Customer (Ibrahim)
 
-View room availability and booking history. 
+1.Login and logout from the system. 
 
- 
+2.Search for available rooms. 
 
-Customer (Ibrahim)
+3.Make and cancel reservations.    
 
-Login and logout from the system. 
+4.View reservation history and current bookings. 
 
-Search for available rooms. 
+# Guest (Osamah)
 
-Make and cancel reservations.    
+1.View room availability. 
 
-View reservation history and current bookings. 
-
- 
-
-Guest (Osamah)
-
-View room availability. 
-
-Search for room details and rates. 
+2.Search for room details and rates. 
