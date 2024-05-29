@@ -1,45 +1,87 @@
 {
   "user": [
     {
-      "UUID": "2d95574f-c9a4-408f-9ac9-a9ec42380cd6",
+      "userID": "UID001",
       "fullname": "Christopher Lan",
       "username": "chris@admin",
-      "password": "38etT9NJ{ZSX",
+      "password": "h0tT0jM!1+3B",
       "role": "1"
     },
     {
-      "UUID": "376c23df-d878-484b-8cdc-aac459c6e9b2",
-      "fullname": "Kaplan Timothy",
-      "username": "kaplan@staff",
-      "password": "NOga9[58G£PA",
+      "userID": "UID002",
+      "fullname": "Sindy Bagwell",
+      "username": "chris@staff",
+      "password": "60$X>Kn9j9D@",
       "role": "2"
     },
     {
-      "UUID": "fdcf03d0-1f60-47ad-bd42-2cb0a5c303b5",
-      "fullname": "Solomon Porter",
-      "username": "soltheking",
-      "password": "GfrD219tA|E-",
+      "userID": "UID003",
+      "fullname": "Mahmood Qaid",
+      "username": "mq2003",
+      "password": "0w/[7$2SM*2x",
       "role": "3"
     },
     {
-      "UUID": "a1c233d4-b517-4bda-88d3-4e2f0b0b2a16",
-      "fullname": "Jessica Smith",
-      "username": "jessica.smith",
-      "password": "HS82KJdi@1d!",
+      "userID": "UID004",
+      "fullname": "Alice Johnson",
+      "username": "ajohnson",
+      "password": "password789",
       "role": "3"
     },
     {
-      "UUID": "a2e6745f-3483-4f44-9313-5c676b4b1cd3",
-      "fullname": "Michael Johnson",
-      "username": "michael.johnson",
-      "password": "kdsF34E@lfS",
+      "userID": "UID005",
+      "fullname": "Bob Brown",
+      "username": "bbrown",
+      "password": "password012",
       "role": "3"
     },
     {
-      "UUID": "a3f789d5-5b24-4ffb-bdb9-7087e47b231d",
-      "fullname": "Emily Davis",
-      "username": "emily.davis",
-      "password": "PL983@shdD",
+      "userID": "UID006",
+      "fullname": "Carlos Ruiz",
+      "username": "cruiz",
+      "password": "password345",
+      "role": "3"
+    },
+    {
+      "userID": "UID007",
+      "fullname": "Diana Prince",
+      "username": "dprince",
+      "password": "password678",
+      "role": "3"
+    },
+    {
+      "userID": "UID008",
+      "fullname": "Edward Nigma",
+      "username": "enigma",
+      "password": "password901",
+      "role": "3"
+    },
+    {
+      "userID": "UID009",
+      "fullname": "Fiona Glenanne",
+      "username": "fglenanne",
+      "password": "password234",
+      "role": "3"
+    },
+    {
+      "userID": "UID010",
+      "fullname": "Gordon Freeman",
+      "username": "gfreeman",
+      "password": "password567",
+      "role": "3"
+    },
+    {
+      "userID": "UID011",
+      "fullname": "John Doe",
+      "username": "jdoe",
+      "password": "password123",
+      "role": "3"
+    },
+    {
+      "userID": "UID012",
+      "fullname": "Jane Smith",
+      "username": "jsmith",
+      "password": "password456",
       "role": "3"
     }
   ],
@@ -413,144 +455,83 @@
       "status": "Available"
     }
   ],
-  "reservations": [
+  "bookings": [
     {
-      "reservation_id": "R001",
-      "customer_id": "fdcf03d0-1f60-47ad-bd42-2cb0a5c303b5",
-      "room_id": "S104-Standard",
-      "check_in_date": "2024-06-01",
-      "check_out_date": "2024-06-07",
-      "status": "Confirmed"
+      "bookingID": "BOOKING001",
+      "customerID": "UID001",
+      "roomID": "S104-Standard",
+      "reservedAt": "2024-05-05T10:00:00Z",
+      "checkIn": "2024-05-10T14:00:00Z",
+      "checkOut": "2024-05-15T11:00:00Z"
     },
     {
-      "reservation_id": "R002",
-      "customer_id": "a1c233d4-b517-4bda-88d3-4e2f0b0b2a16",
-      "room_id": "S108-Standard",
-      "check_in_date": "2024-06-03",
-      "check_out_date": "2024-06-10",
-      "status": "Confirmed"
+      "bookingID": "BOOKING002",
+      "customerID": "UID002",
+      "roomID": "S108-Standard",
+      "reservedAt": "2024-05-06T11:00:00Z",
+      "checkIn": "2024-05-12T14:00:00Z",
+      "checkOut": "2024-05-17T11:00:00Z"
     },
     {
-      "reservation_id": "R003",
-      "customer_id": "a2e6745f-3483-4f44-9313-5c676b4b1cd3",
-      "room_id": "D114-Deluxe",
-      "check_in_date": "2024-06-05",
-      "check_out_date": "2024-06-12",
-      "status": "Confirmed"
+      "bookingID": "BOOKING003",
+      "customerID": "UID003",
+      "roomID": "SU304-Suite",
+      "reservedAt": "2024-05-07T12:00:00Z",
+      "checkIn": "2024-05-11T14:00:00Z",
+      "checkOut": "2024-05-16T11:00:00Z"
     },
     {
-      "reservation_id": "R004",
-      "customer_id": "a3f789d5-5b24-4ffb-bdb9-7087e47b231d",
-      "room_id": "D118-Deluxe",
-      "check_in_date": "2024-06-07",
-      "check_out_date": "2024-06-14",
-      "status": "Confirmed"
+      "bookingID": "BOOKING004",
+      "customerID": "UID004",
+      "roomID": "D114-Deluxe",
+      "reservedAt": "2024-05-08T13:00:00Z",
+      "checkIn": "2024-05-14T14:00:00Z",
+      "checkOut": "2024-05-19T11:00:00Z"
     },
     {
-      "reservation_id": "R005",
-      "customer_id": "fdcf03d0-1f60-47ad-bd42-2cb0a5c303b5",
-      "room_id": "SU304-Suite",
-      "check_in_date": "2024-06-10",
-      "check_out_date": "2024-06-17",
-      "status": "Confirmed"
+      "bookingID": "BOOKING005",
+      "customerID": "UID005",
+      "roomID": "D118-Deluxe",
+      "reservedAt": "2024-05-09T14:00:00Z",
+      "checkIn": "2024-05-15T14:00:00Z",
+      "checkOut": "2024-05-20T11:00:00Z"
     }
   ],
   "invoices": [
     {
-      "invoice_id": "INV001",
-      "customer_id": "fdcf03d0-1f60-47ad-bd42-2cb0a5c303b5",
-      "room_id": "S102-Standard",
-      "amount": 700,
-      "status": "Paid",
-      "date": "2024-05-28"
+      "invoiceID": "INV001",
+      "customerID": "UID006",
+      "bookingID": "BOOKING006",
+      "amountPaid": "500",
+      "datePaid": "2024-05-10T09:00:00Z"
     },
     {
-      "invoice_id": "INV002",
-      "customer_id": "a1c233d4-b517-4bda-88d3-4e2f0b0b2a16",
-      "room_id": "S106-Standard",
-      "amount": 700,
-      "status": "Paid",
-      "date": "2024-05-28"
+      "invoiceID": "INV002",
+      "customerID": "UID007",
+      "bookingID": "BOOKING007",
+      "amountPaid": "600",
+      "datePaid": "2024-05-11T09:30:00Z"
     },
     {
-      "invoice_id": "INV003",
-      "customer_id": "a2e6745f-3483-4f44-9313-5c676b4b1cd3",
-      "room_id": "S110-Standard",
-      "amount": 700,
-      "status": "Paid",
-      "date": "2024-05-28"
+      "invoiceID": "INV003",
+      "customerID": "UID008",
+      "bookingID": "BOOKING008",
+      "amountPaid": "700",
+      "datePaid": "2024-05-12T10:00:00Z"
     },
     {
-      "invoice_id": "INV004",
-      "customer_id": "a3f789d5-5b24-4ffb-bdb9-7087e47b231d",
-      "room_id": "S202-Standard",
-      "amount": 700,
-      "status": "Paid",
-      "date": "2024-05-28"
+      "invoiceID": "INV004",
+      "customerID": "UID009",
+      "bookingID": "BOOKING009",
+      "amountPaid": "800",
+      "datePaid": "2024-05-13T10:30:00Z"
     },
     {
-      "invoice_id": "INV005",
-      "customer_id": "fdcf03d0-1f60-47ad-bd42-2cb0a5c303b5",
-      "room_id": "S206-Standard",
-      "amount": 700,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV006",
-      "customer_id": "a1c233d4-b517-4bda-88d3-4e2f0b0b2a16",
-      "room_id": "S210-Standard",
-      "amount": 700,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV007",
-      "customer_id": "a2e6745f-3483-4f44-9313-5c676b4b1cd3",
-      "room_id": "D112-Deluxe",
-      "amount": 1050,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV008",
-      "customer_id": "a3f789d5-5b24-4ffb-bdb9-7087e47b231d",
-      "room_id": "D116-Deluxe",
-      "amount": 1050,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV009",
-      "customer_id": "fdcf03d0-1f60-47ad-bd42-2cb0a5c303b5",
-      "room_id": "D120-Deluxe",
-      "amount": 1050,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV010",
-      "customer_id": "a1c233d4-b517-4bda-88d3-4e2f0b0b2a16",
-      "room_id": "D212-Deluxe",
-      "amount": 1050,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV011",
-      "customer_id": "a2e6745f-3483-4f44-9313-5c676b4b1cd3",
-      "room_id": "D216-Deluxe",
-      "amount": 1050,
-      "status": "Paid",
-      "date": "2024-05-28"
-    },
-    {
-      "invoice_id": "INV012",
-      "customer_id": "a3f789d5-5b24-4ffb-bdb9-7087e47b231d",
-      "room_id": "SU302-Suite",
-      "amount": 1400,
-      "status": "Paid",
-      "date": "2024-05-28"
+      "invoiceID": "INV005",
+      "customerID": "UID010",
+      "bookingID": "BOOKING010",
+      "amountPaid": "900",
+      "datePaid": "2024-05-14T11:00:00Z"
     }
   ]
 }
