@@ -52,7 +52,7 @@ cJSON* logIn(cJSON *json){
             }
     }
     } else {
-        printf("No users found!\n");
+        printf("\nNo users found!\n");
     }
 
     free(users);
