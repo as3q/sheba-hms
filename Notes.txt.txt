@@ -1,0 +1,5 @@
+USE THIS TO FIX GCC INTERNAL COMMAND NOT FOUND
+set Path=C:\MinGW\bin;%PATH%
+
+USE THIS FOR COMPILATION
+gcc -o main main.c cjson/cJSON.c

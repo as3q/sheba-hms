@@ -1,24 +1,24 @@
 {
-  "user": [
+  "users": [
     {
       "userID": "UID001",
       "fullname": "Christopher Lan",
-      "username": "chris@admin",
-      "password": "h0tT0jM!1+3B",
+      "username": "admin",
+      "password": "admin",
       "role": "1"
     },
     {
       "userID": "UID002",
       "fullname": "Sindy Bagwell",
-      "username": "chris@staff",
-      "password": "60$X>Kn9j9D@",
+      "username": "staff",
+      "password": "staff",
       "role": "2"
     },
     {
       "userID": "UID003",
       "fullname": "Mahmood Qaid",
-      "username": "mq2003",
-      "password": "0w/[7$2SM*2x",
+      "username": "customer",
+      "password": "customer",
       "role": "3"
     },
     {
@@ -85,11 +85,11 @@
       "role": "3"
     }
   ],
-  "room": [
+  "rooms": [
     {
       "ID": "S101-Standard",
       "room_number": "101",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -97,7 +97,7 @@
     {
       "ID": "S102-Standard",
       "room_number": "102",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Occupied"
@@ -105,7 +105,7 @@
     {
       "ID": "S103-Standard",
       "room_number": "103",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -113,7 +113,7 @@
     {
       "ID": "S104-Standard",
       "room_number": "104",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Reserved"
@@ -121,7 +121,7 @@
     {
       "ID": "S105-Standard",
       "room_number": "105",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Under Maintenance"
@@ -129,7 +129,7 @@
     {
       "ID": "S106-Standard",
       "room_number": "106",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Occupied"
@@ -137,7 +137,7 @@
     {
       "ID": "S107-Standard",
       "room_number": "107",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -145,7 +145,7 @@
     {
       "ID": "S108-Standard",
       "room_number": "108",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Reserved"
@@ -153,7 +153,7 @@
     {
       "ID": "S109-Standard",
       "room_number": "109",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -161,7 +161,7 @@
     {
       "ID": "S110-Standard",
       "room_number": "110",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
       "status": "Occupied"
@@ -169,7 +169,7 @@
     {
       "ID": "S201-Standard",
       "room_number": "201",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -177,7 +177,7 @@
     {
       "ID": "S202-Standard",
       "room_number": "202",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Occupied"
@@ -185,7 +185,7 @@
     {
       "ID": "S203-Standard",
       "room_number": "203",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -193,7 +193,7 @@
     {
       "ID": "S204-Standard",
       "room_number": "204",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Reserved"
@@ -201,7 +201,7 @@
     {
       "ID": "S205-Standard",
       "room_number": "205",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Under Maintenance"
@@ -209,7 +209,7 @@
     {
       "ID": "S206-Standard",
       "room_number": "206",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Occupied"
@@ -217,7 +217,7 @@
     {
       "ID": "S207-Standard",
       "room_number": "207",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -225,7 +225,7 @@
     {
       "ID": "S208-Standard",
       "room_number": "208",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Reserved"
@@ -233,7 +233,7 @@
     {
       "ID": "S209-Standard",
       "room_number": "209",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Available"
@@ -241,7 +241,7 @@
     {
       "ID": "S210-Standard",
       "room_number": "210",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
       "status": "Occupied"
@@ -249,7 +249,7 @@
     {
       "ID": "D111-Deluxe",
       "room_number": "111",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -257,7 +257,7 @@
     {
       "ID": "D112-Deluxe",
       "room_number": "112",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Occupied"
@@ -265,7 +265,7 @@
     {
       "ID": "D113-Deluxe",
       "room_number": "113",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -273,7 +273,7 @@
     {
       "ID": "D114-Deluxe",
       "room_number": "114",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Reserved"
@@ -281,7 +281,7 @@
     {
       "ID": "D115-Deluxe",
       "room_number": "115",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Under Maintenance"
@@ -289,7 +289,7 @@
     {
       "ID": "D116-Deluxe",
       "room_number": "116",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Occupied"
@@ -297,7 +297,7 @@
     {
       "ID": "D117-Deluxe",
       "room_number": "117",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -305,7 +305,7 @@
     {
       "ID": "D118-Deluxe",
       "room_number": "118",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Reserved"
@@ -313,7 +313,7 @@
     {
       "ID": "D119-Deluxe",
       "room_number": "119",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -321,7 +321,7 @@
     {
       "ID": "D120-Deluxe",
       "room_number": "120",
-      "floor_number": "Ground Floor",
+      "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Occupied"
@@ -329,7 +329,7 @@
     {
       "ID": "D211-Deluxe",
       "room_number": "211",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -337,7 +337,7 @@
     {
       "ID": "D212-Deluxe",
       "room_number": "212",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Occupied"
@@ -345,7 +345,7 @@
     {
       "ID": "D213-Deluxe",
       "room_number": "213",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -353,7 +353,7 @@
     {
       "ID": "D214-Deluxe",
       "room_number": "214",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Reserved"
@@ -361,7 +361,7 @@
     {
       "ID": "D215-Deluxe",
       "room_number": "215",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Under Maintenance"
@@ -369,7 +369,7 @@
     {
       "ID": "D216-Deluxe",
       "room_number": "216",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Occupied"
@@ -377,7 +377,7 @@
     {
       "ID": "D217-Deluxe",
       "room_number": "217",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -385,7 +385,7 @@
     {
       "ID": "D218-Deluxe",
       "room_number": "218",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Reserved"
@@ -393,7 +393,7 @@
     {
       "ID": "D219-Deluxe",
       "room_number": "219",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Available"
@@ -401,7 +401,7 @@
     {
       "ID": "D220-Deluxe",
       "room_number": "220",
-      "floor_number": "First Floor",
+      "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
       "status": "Occupied"
@@ -409,7 +409,7 @@
     {
       "ID": "SU301-Suite",
       "room_number": "301",
-      "floor_number": "Second Floor",
+      "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
       "status": "Available"
@@ -417,7 +417,7 @@
     {
       "ID": "SU302-Suite",
       "room_number": "302",
-      "floor_number": "Second Floor",
+      "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
       "status": "Occupied"
@@ -425,7 +425,7 @@
     {
       "ID": "SU303-Suite",
       "room_number": "303",
-      "floor_number": "Second Floor",
+      "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
       "status": "Available"
@@ -433,7 +433,7 @@
     {
       "ID": "SU304-Suite",
       "room_number": "304",
-      "floor_number": "Second Floor",
+      "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
       "status": "Reserved"
@@ -441,7 +441,7 @@
     {
       "ID": "SU305-Suite",
       "room_number": "305",
-      "floor_number": "Second Floor",
+      "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
       "status": "Under Maintenance"
@@ -449,7 +449,7 @@
     {
       "ID": "SU306-Suite",
       "room_number": "306",
-      "floor_number": "Second Floor",
+      "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
       "status": "Available"
