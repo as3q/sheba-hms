@@ -4,6 +4,18 @@
 #include <conio.h>
 #include "cjson/cJSON.h"
 
+void adminMenu(){
+    printf("admin");
+}
+
+void staffMenu(){
+    printf("staff");
+}
+
+void customerMenu(){
+    printf("customer");
+}
+
 cJSON* logIn(cJSON *json){
     //initalize variables
     char enteredUsername[16];
@@ -46,7 +58,7 @@ cJSON* logIn(cJSON *json){
 
             if (strcmp(cJSON_GetStringValue(username), enteredUsername) == 0 &&
                 strcmp(cJSON_GetStringValue(password), enteredPassword) == 0) {
-                printf("\nUser found!\n");
+                // printf("\nUser found!\n");
                 return user;
                 break;
             }

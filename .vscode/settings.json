@@ -1,5 +1,6 @@
 {
   "files.associations": {
-    "jsense.h": "c"
+    "jsense.h": "c",
+    "cjson.h": "c"
   }
 }
