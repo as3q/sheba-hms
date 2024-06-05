@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <conio.h>
+#include <stdbool.h>
 #include "cjson/cJSON.h"
 
 void adminMenu(){
@@ -17,71 +18,92 @@ void customerMenu(){
 }
 
 cJSON* logIn(cJSON *json){
-    //initalize variables
+    //initialize variables
     char enteredUsername[16];
     char enteredPassword[16];
     
     int i = 0;
     char passmask;
 
-    //prompt user credentials
-    printf("Enter your username: ");
-    scanf("%15s", &enteredUsername);
+    int attempts = 3;
+    bool isLoggedIn = false;
 
-    printf("Enter your password: ");
-    // mask password
-    while ((passmask = _getch()) != 13){
-        if (passmask == 8){
-            printf("\b \b"); 
-            i--;
-        }
-        else {
-            printf("*");
-            enteredPassword[i] = passmask;
-            i++;
-        }
-    }
-    enteredPassword[i] = '\0';
-
-
-    //check user credentials
+    //reading users
     cJSON *users = cJSON_GetObjectItem(json, "users");
-    if (users) {
-        int users_count = cJSON_GetArraySize(users);
-        for (int i = 0; i < users_count; i++) {
-            cJSON *user = cJSON_GetArrayItem(users, i);
 
-            cJSON *userID = cJSON_GetObjectItem(user, "userID");
-            cJSON *fullname = cJSON_GetObjectItem(user, "fullname");
-            cJSON *username = cJSON_GetObjectItem(user, "username");
-            cJSON *password = cJSON_GetObjectItem(user, "password");
-            cJSON *role = cJSON_GetObjectItem(user, "role");
+    while (attempts + 1 > 0 && !isLoggedIn){
 
+        //prompt user credentials
+        printf("Enter your username: ");
+        scanf("%15s", enteredUsername);
 
-            if (strcmp(cJSON_GetStringValue(username), enteredUsername) == 0 &&
-                strcmp(cJSON_GetStringValue(password), enteredPassword) == 0) {
-                printf("\nUser found!\n");
-                
-                if (strcmp(cJSON_GetStringValue(role), "1") == 0){
-                    adminMenu();
-                }
-                else if (strcmp(cJSON_GetStringValue(role), "2") == 0){
-                    staffMenu();
-                }
-                else if (strcmp(cJSON_GetStringValue(role), "3") == 0){
-                    customerMenu();
-                }
-                else {
-                    printf("Error reading user role!");
+        printf("Enter your password: ");
+        // mask password
+        while ((passmask = _getch()) != 13){
+            if (passmask == 8){
+                printf("\b \b"); 
+                i--;
+            }
+            else {
+                printf("*");
+                enteredPassword[i] = passmask;
+                i++;
+            }
+        }
+        enteredPassword[i] = '\0';
+
+        if (users) {
+            int users_count = cJSON_GetArraySize(users);
+            for (int i = 0; i < users_count; i++) {
+                cJSON *user = cJSON_GetArrayItem(users, i);
+
+                cJSON *username = cJSON_GetObjectItem(user, "username");
+                cJSON *password = cJSON_GetObjectItem(user, "password");
+                cJSON *fullname = cJSON_GetObjectItem(user, "fullname");
+                cJSON *role = cJSON_GetObjectItem(user, "role");
+
+                char *firstname = strtok(cJSON_GetStringValue(fullname), " ");
+
+                if (strcmp(cJSON_GetStringValue(username), enteredUsername) == 0 &&
+                    strcmp(cJSON_GetStringValue(password), enteredPassword) == 0) {
+                    printf("\nHello again %s!\n", firstname);
+                    
+                    if (strcmp(cJSON_GetStringValue(role), "1") == 0){
+                        isLoggedIn = true;
+                        adminMenu();
+                    }
+                    else if (strcmp(cJSON_GetStringValue(role), "2") == 0){
+                        isLoggedIn = true;
+                        staffMenu();
+                    }
+                    else if (strcmp(cJSON_GetStringValue(role), "3") == 0){
+                        isLoggedIn = true;
+                        customerMenu();
+                    }
+                    else {
+                        printf("\nError reading user role!\n");
+                    }
                 }
             }
-    }
-    } else {
-        printf("\nError reading user data!\n");
-    }
+        } else {
+            printf("\nError reading user data!\n");
+        }
 
+        if (!isLoggedIn){
+            if (attempts == 0){
+                printf("\nNo more attempts, try again later!");
+                break;
+            }
+            else {
+                printf("\nInvalid username or password! Try again (%d)\n", attempts);
+                attempts--;
+            }
+        }
+    }
     free(users);
+    //return NULL; //if needed
 }
+
 
 int main() {
 
