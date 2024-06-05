@@ -19,82 +19,53 @@
     {
       "userID": "UID003",
       "fullname": "Mahmood Qaid",
-      "username": "customer",
-      "password": "customer",
+      "username": "customer1",
+      "password": "customer1",
       "role": "3",
-      "status": "reservee"
+      "status": null
     },
     {
       "userID": "UID004",
       "fullname": "Alice Johnson",
-      "username": "ajohnson",
-      "password": "password789",
+      "username": "customer2",
+      "password": "customer2",
       "role": "3",
       "status": "reservee"
     },
     {
       "userID": "UID005",
       "fullname": "Bob Brown",
-      "username": "bbrown",
-      "password": "password012",
-      "role": "3",
-      "status": "reservee"
-    },
-    {
-      "userID": "UID006",
-      "fullname": "Carlos Ruiz",
-      "username": "cruiz",
-      "password": "password345",
+      "username": "customer3",
+      "password": "customer3",
       "role": "3",
       "status": "checked in"
+    }
+  ],
+  "bookings": [
+    {
+      "bookingID": "BOOKING001",
+      "customerID": "UID005",
+      "roomID": "S104-Standard",
+      "reservedAt": "2024-05-05T10:00:00Z",
+      "checkIn": "2024-05-07T09:00:00Z",
+      "checkOut": "2024-05-15T11:00:00Z"
     },
     {
-      "userID": "UID007",
-      "fullname": "Diana Prince",
-      "username": "dprince",
-      "password": "password678",
-      "role": "3",
-      "status": "checked in"
-    },
+      "bookingID": "BOOKING002",
+      "customerID": "UID005",
+      "roomID": "S105-Standard",
+      "reservedAt": "2024-07-01T10:00:00Z",
+      "checkIn": null,
+      "checkOut": null
+    }
+  ],
+  "invoices": [
     {
-      "userID": "UID008",
-      "fullname": "Edward Nigma",
-      "username": "enigma",
-      "password": "password901",
-      "role": "3",
-      "status": "checked in"
-    },
-    {
-      "userID": "UID009",
-      "fullname": "Fiona Glenanne",
-      "username": "fglenanne",
-      "password": "password234",
-      "role": "3",
-      "status": "checked in"
-    },
-    {
-      "userID": "UID010",
-      "fullname": "Gordon Freeman",
-      "username": "gfreeman",
-      "password": "password567",
-      "role": "3",
-      "status": "checked in"
-    },
-    {
-      "userID": "UID011",
-      "fullname": "John Doe",
-      "username": "jdoe",
-      "password": "password123",
-      "role": "3",
-      "status": ""
-    },
-    {
-      "userID": "UID012",
-      "fullname": "Jane Smith",
-      "username": "jsmith",
-      "password": "password456",
-      "role": "3",
-      "status": ""
+      "invoiceID": "INV001",
+      "customerID": "UID005",
+      "bookingID": "BOOKING001",
+      "amountPaid": "800",
+      "datePaid": "2024-05-07T09:00:00Z"
     }
   ],
   "rooms": [
@@ -112,7 +83,7 @@
       "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "S103-Standard",
@@ -128,7 +99,7 @@
       "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Reserved"
+      "status": "Occupied"
     },
     {
       "ID": "S105-Standard",
@@ -136,7 +107,7 @@
       "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Under Maintenance"
+      "status": "Reserved"
     },
     {
       "ID": "S106-Standard",
@@ -144,7 +115,7 @@
       "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "S107-Standard",
@@ -160,7 +131,7 @@
       "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "S109-Standard",
@@ -176,7 +147,7 @@
       "room_floor": "Ground Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "S201-Standard",
@@ -192,7 +163,7 @@
       "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "S203-Standard",
@@ -208,7 +179,7 @@
       "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "S205-Standard",
@@ -224,7 +195,7 @@
       "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "S207-Standard",
@@ -240,7 +211,7 @@
       "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "S209-Standard",
@@ -256,7 +227,7 @@
       "room_floor": "First Floor",
       "type": "Standard",
       "price": "100",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "D111-Deluxe",
@@ -272,7 +243,7 @@
       "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "D113-Deluxe",
@@ -288,7 +259,7 @@
       "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "D115-Deluxe",
@@ -304,7 +275,7 @@
       "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "D117-Deluxe",
@@ -320,7 +291,7 @@
       "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "D119-Deluxe",
@@ -336,7 +307,7 @@
       "room_floor": "Ground Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "D211-Deluxe",
@@ -352,7 +323,7 @@
       "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "D213-Deluxe",
@@ -368,7 +339,7 @@
       "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "D215-Deluxe",
@@ -384,7 +355,7 @@
       "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "D217-Deluxe",
@@ -400,7 +371,7 @@
       "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "D219-Deluxe",
@@ -416,7 +387,7 @@
       "room_floor": "First Floor",
       "type": "Deluxe",
       "price": "150",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "SU301-Suite",
@@ -432,7 +403,7 @@
       "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
-      "status": "Occupied"
+      "status": "Available"
     },
     {
       "ID": "SU303-Suite",
@@ -448,7 +419,7 @@
       "room_floor": "Second Floor",
       "type": "Suite",
       "price": "200",
-      "status": "Reserved"
+      "status": "Available"
     },
     {
       "ID": "SU305-Suite",
@@ -465,85 +436,6 @@
       "type": "Suite",
       "price": "200",
       "status": "Available"
-    }
-  ],
-  "bookings": [
-    {
-      "bookingID": "BOOKING001",
-      "customerID": "UID001",
-      "roomID": "S104-Standard",
-      "reservedAt": "2024-05-05T10:00:00Z",
-      "checkIn": "2024-05-10T14:00:00Z",
-      "checkOut": "2024-05-15T11:00:00Z"
-    },
-    {
-      "bookingID": "BOOKING002",
-      "customerID": "UID002",
-      "roomID": "S108-Standard",
-      "reservedAt": "2024-05-06T11:00:00Z",
-      "checkIn": "2024-05-12T14:00:00Z",
-      "checkOut": "2024-05-17T11:00:00Z"
-    },
-    {
-      "bookingID": "BOOKING003",
-      "customerID": "UID003",
-      "roomID": "SU304-Suite",
-      "reservedAt": "2024-05-07T12:00:00Z",
-      "checkIn": "2024-05-11T14:00:00Z",
-      "checkOut": "2024-05-16T11:00:00Z"
-    },
-    {
-      "bookingID": "BOOKING004",
-      "customerID": "UID004",
-      "roomID": "D114-Deluxe",
-      "reservedAt": "2024-05-08T13:00:00Z",
-      "checkIn": "2024-05-14T14:00:00Z",
-      "checkOut": "2024-05-19T11:00:00Z"
-    },
-    {
-      "bookingID": "BOOKING005",
-      "customerID": "UID005",
-      "roomID": "D118-Deluxe",
-      "reservedAt": "2024-05-09T14:00:00Z",
-      "checkIn": "2024-05-15T14:00:00Z",
-      "checkOut": "2024-05-20T11:00:00Z"
-    }
-  ],
-  "invoices": [
-    {
-      "invoiceID": "INV001",
-      "customerID": "UID006",
-      "bookingID": "BOOKING006",
-      "amountPaid": "500",
-      "datePaid": "2024-05-10T09:00:00Z"
-    },
-    {
-      "invoiceID": "INV002",
-      "customerID": "UID007",
-      "bookingID": "BOOKING007",
-      "amountPaid": "600",
-      "datePaid": "2024-05-11T09:30:00Z"
-    },
-    {
-      "invoiceID": "INV003",
-      "customerID": "UID008",
-      "bookingID": "BOOKING008",
-      "amountPaid": "700",
-      "datePaid": "2024-05-12T10:00:00Z"
-    },
-    {
-      "invoiceID": "INV004",
-      "customerID": "UID009",
-      "bookingID": "BOOKING009",
-      "amountPaid": "800",
-      "datePaid": "2024-05-13T10:30:00Z"
-    },
-    {
-      "invoiceID": "INV005",
-      "customerID": "UID010",
-      "bookingID": "BOOKING010",
-      "amountPaid": "900",
-      "datePaid": "2024-05-14T11:00:00Z"
     }
   ]
 }
