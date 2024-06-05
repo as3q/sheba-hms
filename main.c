@@ -5,34 +5,35 @@
 #include "cjson/cJSON.h"
 
 void adminMenu(){
-    printf("admin");
+    printf("admin menu");
 }
 
 void staffMenu(){
-    printf("staff");
+    printf("staff menu");
 }
 
 void customerMenu(){
-    printf("customer");
+    printf("customer menu");
 }
 
 cJSON* logIn(cJSON *json){
     //initalize variables
     char enteredUsername[16];
     char enteredPassword[16];
+    
     int i = 0;
     char passmask;
 
     //prompt user credentials
     printf("Enter your username: ");
-    scanf("%s", &enteredUsername);
+    scanf("%15s", &enteredUsername);
 
     printf("Enter your password: ");
     // mask password
     while ((passmask = _getch()) != 13){
         if (passmask == 8){
-            i--;
             printf("\b \b"); 
+            i--;
         }
         else {
             printf("*");
@@ -40,7 +41,8 @@ cJSON* logIn(cJSON *json){
             i++;
         }
     }
-    enteredPassword[i];
+    enteredPassword[i] = '\0';
+
 
     //check user credentials
     cJSON *users = cJSON_GetObjectItem(json, "users");
@@ -54,17 +56,28 @@ cJSON* logIn(cJSON *json){
             cJSON *username = cJSON_GetObjectItem(user, "username");
             cJSON *password = cJSON_GetObjectItem(user, "password");
             cJSON *role = cJSON_GetObjectItem(user, "role");
-        
+
 
             if (strcmp(cJSON_GetStringValue(username), enteredUsername) == 0 &&
                 strcmp(cJSON_GetStringValue(password), enteredPassword) == 0) {
-                // printf("\nUser found!\n");
-                return user;
-                break;
+                printf("\nUser found!\n");
+                
+                if (strcmp(cJSON_GetStringValue(role), "1") == 0){
+                    adminMenu();
+                }
+                else if (strcmp(cJSON_GetStringValue(role), "2") == 0){
+                    staffMenu();
+                }
+                else if (strcmp(cJSON_GetStringValue(role), "3") == 0){
+                    customerMenu();
+                }
+                else {
+                    printf("Error reading user role!");
+                }
             }
     }
     } else {
-        printf("\nNo users found!\n");
+        printf("\nError reading user data!\n");
     }
 
     free(users);
@@ -77,6 +90,10 @@ int main() {
 
     //open file
     FILE *file = fopen(filename, "r");
+    if (!file) {
+        printf("Error opening file!\n");
+        return 1;
+    }
 
     //find file length
     fseek(file, 0, SEEK_END);
@@ -85,6 +102,11 @@ int main() {
 
     //allocate memory (+1 for null)
     char *content = (char *)malloc(length + 1);
+    if (!content) {
+        printf("Memory allocation failed!\n");
+        fclose(file);
+        return 1;
+    }
 
     //read file content
     fread(content, 1, length, file);
@@ -93,19 +115,16 @@ int main() {
 
     //parse json
     cJSON *json = cJSON_Parse(content);
-
-    cJSON *user = logIn(json);
-    if (user) {
-        // Use the returned user object
-        cJSON *fullname = cJSON_GetObjectItem(user, "fullname");
-        cJSON *role = cJSON_GetObjectItem(user, "role");
-
-        printf("Full name: %s\n", cJSON_GetStringValue(fullname));
-        printf("Role: %s\n", cJSON_GetStringValue(role));
-    } else {
-        printf("\nInvalid username or password.\n");
+    if (!json) {
+        printf("Error parsing JSON!\n");
+        free(content);
+        return 1;
     }
-    
+
+    logIn(json);
+
+    // cJSON *user = logIn(json);
+
     // //printing parsed json
     // char *printed_json = cJSON_Print(json);
     // printf("%s\n", printed_json);
