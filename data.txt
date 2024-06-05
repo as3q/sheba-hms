@@ -5,84 +5,96 @@
       "fullname": "Christopher Lan",
       "username": "admin",
       "password": "admin",
-      "role": "1"
+      "role": "1",
+      "status": null
     },
     {
       "userID": "UID002",
       "fullname": "Sindy Bagwell",
       "username": "staff",
       "password": "staff",
-      "role": "2"
+      "role": "2",
+      "status": null
     },
     {
       "userID": "UID003",
       "fullname": "Mahmood Qaid",
       "username": "customer",
       "password": "customer",
-      "role": "3"
+      "role": "3",
+      "status": "reservee"
     },
     {
       "userID": "UID004",
       "fullname": "Alice Johnson",
       "username": "ajohnson",
       "password": "password789",
-      "role": "3"
+      "role": "3",
+      "status": "reservee"
     },
     {
       "userID": "UID005",
       "fullname": "Bob Brown",
       "username": "bbrown",
       "password": "password012",
-      "role": "3"
+      "role": "3",
+      "status": "reservee"
     },
     {
       "userID": "UID006",
       "fullname": "Carlos Ruiz",
       "username": "cruiz",
       "password": "password345",
-      "role": "3"
+      "role": "3",
+      "status": "checked in"
     },
     {
       "userID": "UID007",
       "fullname": "Diana Prince",
       "username": "dprince",
       "password": "password678",
-      "role": "3"
+      "role": "3",
+      "status": "checked in"
     },
     {
       "userID": "UID008",
       "fullname": "Edward Nigma",
       "username": "enigma",
       "password": "password901",
-      "role": "3"
+      "role": "3",
+      "status": "checked in"
     },
     {
       "userID": "UID009",
       "fullname": "Fiona Glenanne",
       "username": "fglenanne",
       "password": "password234",
-      "role": "3"
+      "role": "3",
+      "status": "checked in"
     },
     {
       "userID": "UID010",
       "fullname": "Gordon Freeman",
       "username": "gfreeman",
       "password": "password567",
-      "role": "3"
+      "role": "3",
+      "status": "checked in"
     },
     {
       "userID": "UID011",
       "fullname": "John Doe",
       "username": "jdoe",
       "password": "password123",
-      "role": "3"
+      "role": "3",
+      "status": ""
     },
     {
       "userID": "UID012",
       "fullname": "Jane Smith",
       "username": "jsmith",
       "password": "password456",
-      "role": "3"
+      "role": "3",
+      "status": ""
     }
   ],
   "rooms": [
