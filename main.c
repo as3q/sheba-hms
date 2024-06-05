@@ -96,8 +96,7 @@ cJSON* logIn(cJSON *json){
                 break;
             }
             else {
-                printf("\n%s %s Invalid username or password! Try again (%d)\n", enteredPassword, enteredUsername, attempts);
-                printf("Entered Password Length: %zu\n", strlen(enteredPassword));
+                printf("\nInvalid username or password! Try again (%d)\n", attempts);
                 attempts--;
             }
         }
