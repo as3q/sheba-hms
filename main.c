@@ -22,7 +22,6 @@ cJSON* logIn(cJSON *json){
     char enteredUsername[16];
     char enteredPassword[16];
     
-    int i = 0;
     char passmask;
 
     int attempts = 3;
@@ -32,12 +31,12 @@ cJSON* logIn(cJSON *json){
     cJSON *users = cJSON_GetObjectItem(json, "users");
 
     while (attempts + 1 > 0 && !isLoggedIn){
-
         //prompt user credentials
         printf("Enter your username: ");
         scanf("%15s", enteredUsername);
 
         printf("Enter your password: ");
+        int i = 0;
         // mask password
         while ((passmask = _getch()) != 13){
             if (passmask == 8){
@@ -66,6 +65,8 @@ cJSON* logIn(cJSON *json){
 
                 if (strcmp(cJSON_GetStringValue(username), enteredUsername) == 0 &&
                     strcmp(cJSON_GetStringValue(password), enteredPassword) == 0) {
+
+                    system("cls");
                     printf("\nHello again %s!\n", firstname);
                     
                     if (strcmp(cJSON_GetStringValue(role), "1") == 0){
@@ -95,7 +96,8 @@ cJSON* logIn(cJSON *json){
                 break;
             }
             else {
-                printf("\nInvalid username or password! Try again (%d)\n", attempts);
+                printf("\n%s %s Invalid username or password! Try again (%d)\n", enteredPassword, enteredUsername, attempts);
+                printf("Entered Password Length: %zu\n", strlen(enteredPassword));
                 attempts--;
             }
         }
