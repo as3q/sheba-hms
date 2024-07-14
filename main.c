@@ -6,7 +6,7 @@
 #include "cjson/cJSON.h"
 
 cJSON* writeFile(cJSON *json){
-    FILE *fp = fopen("test.txt", "w"); 
+    FILE *fp = fopen("data.txt", "w"); 
     
     // write into file
    char *json_str = cJSON_Print(json);
