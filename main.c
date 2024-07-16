@@ -1,19 +1,67 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <conio.h>
-#include <stdbool.h>
-#include "cjson/cJSON.h"
+#include <stdlib.h> //free malloc exit
+#include <conio.h> //getch
+#include <string.h> //strcmp strlen
+#include <stdbool.h> //for booleans
+#include "cjson/cJSON.h" //reading json
 
 cJSON* writeFile(cJSON *json){
-    FILE *fp = fopen("data.txt", "w"); 
+    FILE *fp = fopen("data.txt", "w+"); 
     
     // write into file
    char *json_str = cJSON_Print(json);
-   printf("%s\n", json_str); 
    fputs(json_str, fp); 
    fclose(fp);
    cJSON_free(json_str); 
+}
+
+cJSON* editProfile(cJSON *json, cJSON *user, cJSON *users){
+    printf("Editing profile...\n");
+
+    char newPassword[16];
+
+    cJSON *old_password = cJSON_GetObjectItem(user, "password");
+
+    while (1) {    
+        printf("Enter your new password: ");
+        scanf("%s", &newPassword);
+
+        cJSON* new_password = cJSON_CreateString(newPassword);
+    
+        if (strlen(newPassword) > 16){
+            printf("Password should not be more than 16 characters!\n");
+        }
+        else
+        {
+            if (strlen(newPassword) < 8){ 
+                printf("Password should be at least 8 characters!\n");
+            }
+            else
+            {
+                if (strcmp(newPassword, cJSON_GetStringValue(old_password)) == 0){ 
+                    printf("password similar to the old one!\n");
+                    
+                }
+                else
+                {
+                    cJSON_ReplaceItemInObject(user, "password", new_password);
+                    writeFile(json);
+                    printf("Password successfully changed!\n");
+                    break;
+                }
+            }
+        }
+        
+    }
+
+    int users_count = cJSON_GetArraySize(users);
+    for (int i =0; i < users_count; i++){
+        cJSON *finding_user = cJSON_GetArrayItem(user, i);
+
+        cJSON *username = cJSON_GetObjectItem(user, "username");
+        
+        cJSON *finding_username = cJSON_GetObjectItem(finding_user, "username"); 
+    }
 }
 
 cJSON* adminMenu(cJSON *json, cJSON *users){
@@ -237,25 +285,56 @@ cJSON* adminMenu(cJSON *json, cJSON *users){
             printf ("invalid choice");
         
         
-    }
-    
-   
-    
-        
+    }        
 }
 
-void staffMenu(){
-    printf("staff menu");
+cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
+    int staffMenuChoice;
+    
+    printf("Sheba Staff Menu\n");
+
+    while (1){
+        printf("1.View Available Rooms\n2.Manage Bookings\n3.Booking History\n4.Change Password\n5.Logout\n");
+        scanf("%d", &staffMenuChoice);
+        
+        switch (staffMenuChoice)
+        {
+        case 1:
+            printf("Available Rooms");
+            break;
+
+        case 2:
+            printf("Bookings");
+            break;
+
+        case 3:
+            printf("History");
+            break;
+
+        case 4:
+            editProfile(json, user, users);
+            system("cls");
+            printf("logged out!\n");
+            return false; 
+
+        case 5:
+            printf("Logging out...\n");
+            return false;
+        
+        default:
+            system("cls");
+            printf("Invalid option!\n");
+        }
+    }
 }
 
 void customerMenu(){
-    printf("customer menu");
+    printf("customer menu");   
 }
 
 void guestMenu(){
     printf("guest menu");
 }
-
 
 cJSON* logIn(cJSON *json){
     //initialize variables
@@ -321,7 +400,7 @@ cJSON* logIn(cJSON *json){
                     }
                     else if (strcmp(cJSON_GetStringValue(role), "2") == 0){
                         isLoggedIn = true;
-                        staffMenu();
+                        staffMenu(json, user, users);
                     }
                     else if (strcmp(cJSON_GetStringValue(role), "3") == 0){
                         isLoggedIn = true;
@@ -392,20 +471,29 @@ int main() {
     }
 
     printf("Hi! Welcome to Sheba Hotel App\n");
-    printf("1.log in\n2.guest\n");
-    scanf("%d", &mainMenuChoice);
+        
+    while (1){    
+        printf("1.log in\n2.guest\n3.Exit\n");
+        scanf("%d", &mainMenuChoice);
 
-    switch (mainMenuChoice)
-    {
-    case 1:
-        logIn(json);
-        break;
-    
-    case 2:
-        guestMenu();
-    
-    default:
-        break;
+        switch (mainMenuChoice)
+        {
+        case 1:
+            logIn(json);
+            break;
+        
+        case 2:
+            guestMenu();
+            break;
+
+        case 3:
+            printf("Exiting...\n");
+            return false;
+        
+        default:
+            system("cls");
+            printf("Invalid option!\n");
+        }
     }
 
     //clean memory up
