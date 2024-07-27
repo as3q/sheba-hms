@@ -8,6 +8,7 @@
 
 cJSON* writeFile(cJSON *json){
     FILE *fp = fopen("data.txt", "w+"); 
+    FILE *fp = fopen("data.txt", "w+"); 
     
     // write into file
    char *json_str = cJSON_Print(json);
@@ -466,6 +467,7 @@ cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
 
 void customerMenu(){
     printf("customer menu");   
+    printf("customer menu");   
 }
 
 void guestMenu(){
@@ -536,6 +538,7 @@ cJSON* logIn(cJSON *json){
                     }
                     else if (strcmp(cJSON_GetStringValue(role), "2") == 0){
                         isLoggedIn = true;
+                        staffMenu(json, user, users);
                         staffMenu(json, user, users);
                     }
                     else if (strcmp(cJSON_GetStringValue(role), "3") == 0){
