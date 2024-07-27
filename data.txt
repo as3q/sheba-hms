@@ -39,16 +39,16 @@
 			"bookingID":	"BOOKING001",
 			"customerID":	"UID005",
 			"roomID":	"S104-Standard",
-			"reservedAt":	"2024-05-05T10:00:00Z",
-			"checkIn":	"2024-05-07T09:00:00Z",
-			"checkOut":	"2024-05-15T11:00:00Z"
+			"reservedOn":	"2024-05-05T08:00:00Z",
+			"checkedIn":	"2024-05-07T09:00:00Z",
+			"checkedOut":	"2024-05-15T11:00:00Z"
 		}, {
 			"bookingID":	"BOOKING002",
 			"customerID":	"UID005",
 			"roomID":	"S105-Standard",
-			"reservedAt":	"2024-07-01T10:00:00Z",
-			"checkIn":	null,
-			"checkOut":	null
+			"reservedOn":	"2024-07-01T10:00:00Z",
+			"checkedIn":	null,
+			"checkedOut":	null
 		}],
 	"invoices":	[{
 			"invoiceID":	"INV001",

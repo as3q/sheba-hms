@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h> //free malloc exit
 #include <conio.h> //getch
 #include <string.h> //strcmp strlen
@@ -13,6 +14,25 @@ cJSON* writeFile(cJSON *json){
    fputs(json_str, fp); 
    fclose(fp);
    cJSON_free(json_str); 
+}
+
+char* getCurrentTime() {
+    time_t now;
+    struct tm *local;
+    char *currentTime = (char*)malloc(20);
+
+    now = time(NULL);
+    local = gmtime(&now);
+    local->tm_hour += 8;  //adjust for UTC+8
+
+    //handle UTC+8 hour rollover
+    if (local->tm_hour >= 24) {
+        local->tm_hour -= 24;
+    }
+
+    //format current time into ISO 8601 format
+    strftime(currentTime, 20, "%Y-%m-%dT%H:%M:%S", local);
+    return currentTime;
 }
 
 cJSON* editProfile(cJSON *json, cJSON *user, cJSON *users){
@@ -288,27 +308,141 @@ cJSON* adminMenu(cJSON *json, cJSON *users){
     }        
 }
 
-cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
-    int staffMenuChoice;
-    
-    printf("Sheba Staff Menu\n");
+cJSON*  staffMakeReservation(cJSON *json, cJSON *user, cJSON *users){
+    printf("MAKE\n");
+}
 
+cJSON*  staffCancelReservation(cJSON *json, cJSON *user, cJSON *users){
+    printf("CANCEL\n");
+}
+
+cJSON*  staffReservationMenu(cJSON *json, cJSON *user, cJSON *users){
     while (1){
-        printf("1.View Available Rooms\n2.Manage Bookings\n3.Booking History\n4.Change Password\n5.Logout\n");
-        scanf("%d", &staffMenuChoice);
+        int staffReservationChoice;
+
+        printf("1.Make Reservation\n2.Cancel Reservation\n3.Go back\n");
+        scanf("%d", &staffReservationChoice);
         
-        switch (staffMenuChoice)
+        system("cls");
+        switch (staffReservationChoice)
         {
         case 1:
-            printf("Available Rooms");
+            staffMakeReservation(json, user, users);
             break;
 
         case 2:
-            printf("Bookings");
+            staffCancelReservation(json, user, users);
+            break;
+
+        case 3:
+            return false;
+            break;
+
+        default:
+            printf("Invalid option!\n");
+            break;
+        }
+    }
+}
+
+cJSON*  staffCheckInOut(cJSON *json, cJSON *user, cJSON *users){
+    printf("CHECKNOUT\n");
+}
+
+cJSON*  staffBookingsMenu(cJSON *json, cJSON *user, cJSON *users){
+    while (1){
+        char staffBookingChoice[10];
+
+        printf("1.Reservations\n2.CheckIn/CheckOut\n3.Go back\n");
+        fgets(staffBookingChoice, sizeof(staffBookingChoice), stdin);
+        
+        system("cls");
+        switch (atoi(staffBookingChoice))
+        {
+        case 1:
+            staffReservationMenu(json, user, users);
+            break;
+
+        case 2:
+            staffCheckInOut(json, user, users);
+            break;
+
+        case 3:
+            return false;
+            break;
+
+        default:
+            printf("Invalid option!\n");
+            break;
+        }
+    }
+}
+
+cJSON*  staffViewRooms(cJSON *json, cJSON *user, cJSON *users){
+    printf("ROOMS\n");
+    //view
+}
+
+cJSON*  staffHistorySearch(cJSON *json, cJSON *user, cJSON *users){
+    printf("ALL\n");
+}
+
+cJSON*  staffSortedHistory(cJSON *json, cJSON *user, cJSON *users){
+    printf("UID\n");
+}
+
+cJSON*  staffHistory(cJSON *json, cJSON *user, cJSON *users){
+    while (1){
+        char staffHistoryChoice[10];
+
+        printf("1.View All Bookings\n2.Search by UID\n3.Go back\n");
+        fgets(staffHistoryChoice, sizeof(staffHistoryChoice), stdin);
+
+        system("cls");
+        switch (atoi(staffHistoryChoice))
+        {
+        case 1:
+            staffSortedHistory(json, user, users);
+            break;
+
+        case 2:
+            staffHistorySearch(json, user, users);
+            break;
+
+        case 3:
+            return false;
+            break;
+
+        default:
+            printf("Invalid option!\n");
+            break;
+        }
+    }
+}
+
+cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
+    char staffMenuChoice[10];
+    
+    while (1){
+        printf("Sheba Staff Menu");
+        printf("\n1.View Available Rooms\n2.Manage Bookings\n3.Booking History\n4.Change Password\n5.Logout\n");
+        fgets(staffMenuChoice, sizeof(staffMenuChoice), stdin);
+        
+        switch (atoi(staffMenuChoice))
+        {
+        case 1:
+            printf("Available Rooms\n");
+            //view rooms that has status available 
+            break;
+
+        case 2:
+            printf("Bookings\n");
+            staffBookingsMenu(json, user, users);
             break;
 
         case 3:
             printf("History");
+            staffHistory(json, users, user);
             break;
 
         case 4:
@@ -316,16 +450,18 @@ cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
             system("cls");
             printf("logged out!\n");
             return false; 
+            break;
 
         case 5:
-            printf("Logging out...\n");
+            printf("Logged out...\n");
             return false;
+            break;
         
         default:
-            system("cls");
-            printf("Invalid option!\n");
+            printf("Invalid option!");
         }
     }
+    system("cls");
 }
 
 void customerMenu(){
@@ -333,7 +469,7 @@ void customerMenu(){
 }
 
 void guestMenu(){
-    printf("guest menu");
+    printf("guest menu\n");
 }
 
 cJSON* logIn(cJSON *json){
@@ -417,11 +553,13 @@ cJSON* logIn(cJSON *json){
 
         if (!isLoggedIn){
             if (attempts == 0){
-                printf("\nNo more attempts, try again later!");
+                system("cls");
+                printf("No more attempts, try again later!");
                 break;
             }
             else {
-                printf("\nInvalid username or password! Try again (%d)\n", attempts);
+                system("cls");
+                printf("Invalid username or password! Try again (%d)\n", attempts);
                 attempts--;
             }
         }
@@ -432,7 +570,7 @@ cJSON* logIn(cJSON *json){
 int main() {
 
     //initialize variables
-    int mainMenuChoice;
+    char mainMenuChoice[10];
 
     //file path
     const char *filename = "data.txt";
@@ -470,13 +608,19 @@ int main() {
         return 1;
     }
 
-    printf("Hi! Welcome to Sheba Hotel App\n");
+    //handle over limit reservation
+    //if reservedOn time + 3 days is greater than today then delete reservation
+
+    printf("╔════════════════════════════╗\n");
+    printf("║ Welcome to Sheba Hotel App ║\n");
+    printf("╚════════════════════════════╝\n");
         
     while (1){    
         printf("1.log in\n2.guest\n3.Exit\n");
-        scanf("%d", &mainMenuChoice);
+        fgets(mainMenuChoice, sizeof(mainMenuChoice), stdin);
 
-        switch (mainMenuChoice)
+        system("cls");
+        switch (atoi(mainMenuChoice))
         {
         case 1:
             logIn(json);
@@ -489,6 +633,7 @@ int main() {
         case 3:
             printf("Exiting...\n");
             return false;
+            break;
         
         default:
             system("cls");

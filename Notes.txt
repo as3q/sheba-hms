@@ -3,3 +3,7 @@ set Path=C:\MinGW\bin;%PATH%
 
 USE THIS FOR COMPILATION
 gcc -o main main.c cjson/cJSON.c
+
+FIX UTF-8 CMD FORMAT
+chcp 65001
+
