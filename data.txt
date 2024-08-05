@@ -1,61 +1,101 @@
 {
 	"users":	[{
-			"userID":	"UID001",
+			"userID":	1,
 			"fullname":	"Christopher",
 			"username":	"admin",
 			"password":	"admin",
 			"role":	"1",
-			"status":	null
+			"status":	"N/A"
 		}, {
-			"userID":	"UID002",
+			"userID":	2,
 			"fullname":	"Sindy",
 			"username":	"staff",
 			"password":	"staffnew",
 			"role":	"2",
-			"status":	null
+			"status":	"N/A"
 		}, {
-			"userID":	"UID003",
-			"fullname":	"Mahmood",
+			"userID":	3,
+			"fullname":	"Mahmood Qaid",
 			"username":	"customer1",
 			"password":	"customer1",
 			"role":	"3",
-			"status":	null
+			"status":	"reservee"
 		}, {
-			"userID":	"UID004",
-			"fullname":	"Alice",
+			"userID":	4,
+			"fullname":	"Alice Johnson",
 			"username":	"customer2",
 			"password":	"customer2",
 			"role":	"3",
-			"status":	"reservee"
+			"status":	"N/A"
 		}, {
-			"userID":	"UID005",
-			"fullname":	"Bob",
+			"userID":	5,
+			"fullname":	"Bob Marley",
 			"username":	"customer3",
 			"password":	"customer3",
 			"role":	"3",
 			"status":	"checked in"
 		}],
 	"bookings":	[{
-			"bookingID":	"BOOKING001",
-			"customerID":	"UID005",
-			"roomID":	"S104-Standard",
+			"bookingID":	1,
+			"customerID":	3,
+			"roomID":	"S103-Standard",
 			"reservedOn":	"2024-05-05T08:00:00Z",
 			"checkedIn":	"2024-05-07T09:00:00Z",
-			"checkedOut":	"2024-05-15T11:00:00Z"
+			"checkedOut":	"2024-05-15T11:00:00Z",
+			"status":	"Confirmed"
 		}, {
-			"bookingID":	"BOOKING002",
-			"customerID":	"UID005",
-			"roomID":	"S105-Standard",
-			"reservedOn":	"2024-07-01T10:00:00Z",
-			"checkedIn":	null,
-			"checkedOut":	null
+			"bookingID":	2,
+			"customerID":	5,
+			"roomID":	"SU303-Suite",
+			"reservedOn":	"2024-08-01T01:04:03Z",
+			"checkedIn":	"2024-08-02T15:48:20Z",
+			"checkedOut":	"N/A",
+			"status":	"Confirmed"
+		}, {
+			"bookingID":	3,
+			"customerID":	4,
+			"roomID":	"SU303-Suite",
+			"reservedOn":	"2024-08-01T01:04:03Z",
+			"checkedIn":	"N/A",
+			"checkedOut":	"N/A",
+			"status":	"Canceled"
+		}, {
+			"bookingID":	4,
+			"customerID":	3,
+			"roomID":	"SU302-Suite",
+			"reservedOn":	"2024-08-04T17:37:42Z",
+			"checkedIn":	"2024-08-04T17:38:30Z",
+			"checkedOut":	"2024-08-04T17:39:07Z",
+			"status":	"Confirmed"
+		}, {
+			"bookingID":	5,
+			"customerID":	3,
+			"roomID":	"SU302-Suite",
+			"reservedOn":	"2024-08-04T17:40:43Z",
+			"checkedIn":	"N/A",
+			"checkedOut":	"N/A",
+			"status":	"Canceled"
+		}, {
+			"bookingID":	6,
+			"customerID":	3,
+			"roomID":	"SU303-Suite",
+			"reservedOn":	"2024-08-04T18:16:54Z",
+			"checkedIn":	"N/A",
+			"checkedOut":	"N/A",
+			"status":	"Confirmed"
 		}],
 	"invoices":	[{
-			"invoiceID":	"INV001",
-			"customerID":	"UID005",
-			"bookingID":	"BOOKING001",
+			"invoiceID":	1,
+			"customerID":	3,
+			"bookingID":	1,
 			"amountPaid":	800,
-			"datePaid":	"2024-05-07T09:00:00Z"
+			"datePaid":	"2024-05-15T11:00:00Z"
+		}, {
+			"invoiceID":	2,
+			"customerID":	3,
+			"bookingID":	4,
+			"amountPaid":	200,
+			"datePaid":	"2024-08-04T17:39:07Z"
 		}],
 	"rooms":	[{
 			"ID":	"S101-Standard",
@@ -77,56 +117,7 @@
 			"room_floor":	"Ground Floor",
 			"type":	"Standard",
 			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S104-Standard",
-			"room_number":	104,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Occupied"
-		}, {
-			"ID":	"S105-Standard",
-			"room_number":	105,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Reserved"
-		}, {
-			"ID":	"S106-Standard",
-			"room_number":	106,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S107-Standard",
-			"room_number":	107,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S108-Standard",
-			"room_number":	108,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S109-Standard",
-			"room_number":	109,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S110-Standard",
-			"room_number":	110,
-			"room_floor":	"Ground Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
+			"Status":	"Available"
 		}, {
 			"ID":	"S201-Standard",
 			"room_number":	201,
@@ -144,55 +135,6 @@
 		}, {
 			"ID":	"S203-Standard",
 			"room_number":	203,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S204-Standard",
-			"room_number":	204,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S205-Standard",
-			"room_number":	205,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Under Maintenance"
-		}, {
-			"ID":	"S206-Standard",
-			"room_number":	206,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S207-Standard",
-			"room_number":	207,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S208-Standard",
-			"room_number":	208,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S209-Standard",
-			"room_number":	209,
-			"room_floor":	"First Floor",
-			"type":	"Standard",
-			"price":	100,
-			"status":	"Available"
-		}, {
-			"ID":	"S210-Standard",
-			"room_number":	210,
 			"room_floor":	"First Floor",
 			"type":	"Standard",
 			"price":	100,
@@ -219,125 +161,6 @@
 			"price":	150,
 			"status":	"Available"
 		}, {
-			"ID":	"D114-Deluxe",
-			"room_number":	114,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D115-Deluxe",
-			"room_number":	115,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Under Maintenance"
-		}, {
-			"ID":	"D116-Deluxe",
-			"room_number":	116,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D117-Deluxe",
-			"room_number":	117,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D118-Deluxe",
-			"room_number":	118,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D119-Deluxe",
-			"room_number":	119,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D120-Deluxe",
-			"room_number":	120,
-			"room_floor":	"Ground Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D211-Deluxe",
-			"room_number":	211,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D212-Deluxe",
-			"room_number":	212,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D213-Deluxe",
-			"room_number":	213,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D214-Deluxe",
-			"room_number":	214,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D215-Deluxe",
-			"room_number":	215,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Under Maintenance"
-		}, {
-			"ID":	"D216-Deluxe",
-			"room_number":	216,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D217-Deluxe",
-			"room_number":	217,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D218-Deluxe",
-			"room_number":	218,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D219-Deluxe",
-			"room_number":	219,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
-			"ID":	"D220-Deluxe",
-			"room_number":	220,
-			"room_floor":	"First Floor",
-			"type":	"Deluxe",
-			"price":	150,
-			"status":	"Available"
-		}, {
 			"ID":	"SU301-Suite",
 			"room_number":	301,
 			"room_floor":	"Second Floor",
@@ -354,27 +177,6 @@
 		}, {
 			"ID":	"SU303-Suite",
 			"room_number":	303,
-			"room_floor":	"Second Floor",
-			"type":	"Suite",
-			"price":	200,
-			"status":	"Available"
-		}, {
-			"ID":	"SU304-Suite",
-			"room_number":	304,
-			"room_floor":	"Second Floor",
-			"type":	"Suite",
-			"price":	200,
-			"status":	"Available"
-		}, {
-			"ID":	"SU305-Suite",
-			"room_number":	305,
-			"room_floor":	"Second Floor",
-			"type":	"Suite",
-			"price":	200,
-			"status":	"Under Maintenance"
-		}, {
-			"ID":	"SU306-Suite",
-			"room_number":	306,
 			"room_floor":	"Second Floor",
 			"type":	"Suite",
 			"price":	200,
