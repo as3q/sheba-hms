@@ -3,6 +3,7 @@
     "*.embeddedhtml": "html",
     "cjson.h": "c",
     "conio.h": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "ctype.h": "c"
   }
 }

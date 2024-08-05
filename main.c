@@ -8,52 +8,18 @@
 #include <ctype.h>
 
 int generalBookingIDCounter;
-int generalCounterBooking(cJSON *json)
-{
-    cJSON* bookings = cJSON_GetObjectItem(json, "bookings");
-    int bookingsNumber = cJSON_GetArraySize(bookings);
+cJSON *adminMenu(cJSON *json, cJSON *user, cJSON *users);
+cJSON *registerNewUser(cJSON *users, cJSON *json);
+cJSON *manageExistingUsers(cJSON *json, cJSON *users);
+cJSON *manageHotelRooms(cJSON *rooms, cJSON *json);
+cJSON *addHotelRoom(cJSON *rooms, cJSON *json);
+cJSON *updateHotelRoom(cJSON *rooms, cJSON *json);
+cJSON *removeHotelRoom(cJSON *rooms, cJSON *json);
+cJSON *logOut(int *is_logged_in, cJSON *json);
 
-    for (int i = 0; i < bookingsNumber; i++) {
-        cJSON* booking = cJSON_GetArrayItem(bookings, i);
-        generalBookingIDCounter = i + 2;
-    }
-
-
-    return generalBookingIDCounter;
-}
-
-
-cJSON* viewCurrentBooking(cJSON *bookings, int bookingsNumber, int userID) {
-    cJSON* currentBooking = NULL;
-    int currentBookingFind = -1;
-
-    for (int i = 0; i < bookingsNumber; i++) {
-        cJSON* booking = cJSON_GetArrayItem(bookings, i);
-        if (cJSON_GetNumberValue(cJSON_GetObjectItemCaseSensitive(booking, "customerID")) == userID) {
-            currentBookingFind = i;
-            currentBooking = booking;
-        }   
-    }
-
-    if (currentBooking != NULL)
-    {
-        printf("Your Current Bookings are:\n");
-        printf("-------------------------------------------------------------\n");
-        printf("|%10s|%15s|%10s|%10s|%10s|\n", "Booking ID", "Room ID", "Check-In", "Check-Out", "Status");
-        printf("-------------------------------------------------------------\n");
-        printf("|%10d|%15s|%10s|%10s|%10s|\n", 
-            (int)cJSON_GetNumberValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "bookingID")),
-            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "roomID")),
-            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "checkIn")),
-            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "checkOut")),
-            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "status")));
-        printf("-------------------------------------------------------------\n");
-    } else
-    {
-        printf("There are no current bookings.\n");
-    }
-}
-
+//Mahmood Qaid
+//Helper Functions + Staff
+////////////////
 cJSON* writeFile(cJSON *json){
     FILE *fp = fopen("data.txt", "w+"); 
     
@@ -64,7 +30,6 @@ cJSON* writeFile(cJSON *json){
    cJSON_free(json_str); 
 }
 
-//clears input buffer (for fgets)
 void clearInputBuffer(){
     int c;
         
@@ -91,7 +56,6 @@ char* getCurrentTime() {
     return strcat(currentTime, "Z");
 }
 
-//to parse string time
 time_t parseTime(const char *timeStr) {
     struct tm tm;
     memset(&tm, 0, sizeof(struct tm));
@@ -179,7 +143,8 @@ cJSON* editProfile(cJSON *json, cJSON *user, cJSON *users){
     }
 }
 
-//CANCEL RESERVATIONS AFTER 3 DAYS
+////////////////
+
 cJSON *staffAutoCancel(cJSON *json){
      int available = 0;
     cJSON *rooms = cJSON_GetObjectItem(json, "rooms");
@@ -506,7 +471,6 @@ cJSON* staffCancelReservation(cJSON *json, cJSON *users){
     }
 }
 
-//OK
 cJSON*  staffReservationMenu(cJSON *json,cJSON *users){
     
     while (1){
@@ -539,7 +503,6 @@ cJSON*  staffReservationMenu(cJSON *json,cJSON *users){
     }
 }
 
-//OK
 cJSON*  staffCheckInOut(cJSON *json, cJSON *users){
     int choice;
 
@@ -725,7 +688,6 @@ cJSON*  staffCheckInOut(cJSON *json, cJSON *users){
     free(rooms);
 }
 
-//OK
 cJSON*  staffBookingsMenu(cJSON *json, cJSON *users){
     while (1){
         char staffBookingChoice[2];
@@ -758,7 +720,6 @@ cJSON*  staffBookingsMenu(cJSON *json, cJSON *users){
     }
 }
 
-//OK
 cJSON*  staffViewRooms(cJSON *json){
     int count = 1;
     char staffViewBack[2];
@@ -941,7 +902,6 @@ cJSON*  staffHistoryView(cJSON *json, cJSON *users){
     free(invoices);
 }
 
-//OK
 cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
     char staffMenuChoice[2];
 
@@ -985,12 +945,823 @@ cJSON* staffMenu(cJSON *json, cJSON *user, cJSON *users){
         };
     }
 }
+////////////////
 
-void customerMenu(){
-    printf("customer menu");   
+
+//Ibrahim Saeed
+//Customer
+////////////////
+int generalCounterBooking(cJSON *json)
+{
+    cJSON* bookings = cJSON_GetObjectItem(json, "bookings");
+    int bookingsNumber = cJSON_GetArraySize(bookings);
+
+    for (int i = 0; i < bookingsNumber; i++) {
+        cJSON* booking = cJSON_GetArrayItem(bookings, i);
+        generalBookingIDCounter = i + 2;
+    }
+
+
+    return generalBookingIDCounter;
 }
 
-void guestMenu(cJSON *json){
+cJSON* viewCurrentBooking(cJSON *bookings, int bookingsNumber, int userID) {
+    cJSON* currentBooking = NULL;
+    int currentBookingFind = -1;
+
+    for (int i = 0; i < bookingsNumber; i++) {
+        cJSON* booking = cJSON_GetArrayItem(bookings, i);
+        if (cJSON_GetNumberValue(cJSON_GetObjectItemCaseSensitive(booking, "customerID")) == userID) {
+            currentBookingFind = i;
+            currentBooking = booking;
+        }   
+    }
+
+    if (currentBooking != NULL)
+    {
+        printf("Your Current Bookings are:\n");
+        printf("-------------------------------------------------------------\n");
+        printf("|%10s|%15s|%10s|%10s|%10s|\n", "Booking ID", "Room ID", "Check-In", "Check-Out", "Status");
+        printf("-------------------------------------------------------------\n");
+        printf("|%10d|%15s|%10s|%10s|%10s|\n", 
+            (int)cJSON_GetNumberValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "bookingID")),
+            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "roomID")),
+            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "checkIn")),
+            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "checkOut")),
+            cJSON_GetStringValue(cJSON_GetObjectItemCaseSensitive(currentBooking, "status")));
+        printf("-------------------------------------------------------------\n");
+    } else
+    {
+        printf("There are no current bookings.\n");
+    }
+}
+
+cJSON* customerMenu(cJSON *json, cJSON *user, cJSON *users){
+    writeFile(json);
+    cJSON* userIDItem = cJSON_GetObjectItemCaseSensitive(user, "userID");
+    int userID = (int)cJSON_GetNumberValue(userIDItem);
+ 
+    cJSON* rooms = cJSON_GetObjectItem(json, "rooms");
+    cJSON* bookings = cJSON_GetObjectItem(json, "bookings");
+   
+    char roomID[20];
+    char roomType[20];
+    int choice;
+    int roomsNumber = cJSON_GetArraySize(rooms);
+    int bookingsNumber = cJSON_GetArraySize(bookings);
+   
+    do
+    {
+   
+    printf("\nSheba Customer menu\n");
+    printf("1 - Search for available rooms\n");
+    printf("2 - Make a reservation\n");
+    printf("3 - Cancel reservation\n");
+    printf("4 - View reservation history\n");
+    printf("5 - View current booking\n");
+    printf("6 - Change password\n");
+    printf("0 - Exit\n");
+    printf("Please select a service: ");
+    scanf("%d", &choice);
+   
+ 
+    switch (choice)
+    {
+    case 1: // Search the available rooms incase choice 1
+    {
+        printf("Select preferred room type (Standard, Deluxe, or Suite): ");
+        scanf("%s", roomType);
+        for (int i = 0; i < roomsNumber; i++) {
+            cJSON* room = cJSON_GetArrayItem(rooms, i);
+            cJSON* type = cJSON_GetObjectItem(room, "type");
+            cJSON* status = cJSON_GetObjectItem(room, "status");
+ 
+            if (strcmp(cJSON_GetStringValue(type), roomType) == 0 && strcmp(cJSON_GetStringValue(status), "Available") == 0)
+            {
+                cJSON* room_number = cJSON_GetObjectItem(room, "room_number");
+                cJSON* room_floor = cJSON_GetObjectItem(room, "room_floor");
+                cJSON* price = cJSON_GetObjectItem(room, "price");
+                printf("|%15s|%7d|%15s|%10s|%7d|\n", cJSON_GetStringValue(cJSON_GetObjectItem(room, "ID")),
+                   (*room_number).valueint, cJSON_GetStringValue(room_floor),
+                   roomType, (*price).valueint);
+            }
+        }
+        break;
+    }
+       
+    case 2: // Make A Reservation incase choice 2
+    {
+        char reservedOn[20];
+        char checkInDate[20];
+        char checkOutDate[20];
+        // time with date
+        time_t now = time(NULL);
+        struct tm *timeinfo = localtime(&now);
+        strftime(reservedOn, sizeof(reservedOn), "%Y-%m-%dT%H:%M:%S", timeinfo);
+ 
+        printf("Please fill in the following:\n");
+        printf("Your preferred RoomID: ");
+        scanf("%s", roomID);
+ 
+        // see room exists and availability
+        bool roomFound; // boolean to check if the room is available, default 0(false)
+        bool roomReserved; // boolean to cancel if the room is reserved
+ 
+        if (rooms) {
+            for (int i = 0; i < roomsNumber; i++)
+            {
+                cJSON* room = cJSON_GetArrayItem(rooms, i);
+                if (strcmp(cJSON_GetStringValue(cJSON_GetObjectItem(room, "ID")), roomID) == 0 &&
+                    strcmp(cJSON_GetStringValue(cJSON_GetObjectItem(room, "status")), "Available") == 0)
+                    {
+                    roomFound = true;
+                    roomReserved = false;
+                    }
+                if (strcmp(cJSON_GetStringValue(cJSON_GetObjectItem(room, "ID")), roomID) == 0 &&
+                    strcmp(cJSON_GetStringValue(cJSON_GetObjectItem(room, "status")), "Reserved") == 0)
+                {
+                    printf("Sorry, this room is not available.\n");
+                    roomFound = true;
+                    roomReserved = true;
+                }
+            }
+        }
+ 
+        if(!roomFound)
+        {
+            printf("Sorry, this room does not exist.\n");
+            break;
+        }
+ 
+        if (roomReserved && roomFound)
+        {
+            break;
+        }
+ 
+ 
+        printf("When are you checking-in (YYYY-MM-DD): ");
+        scanf("%s", checkInDate);
+       
+        printf("When are you checking-out (YYYY-MM-DD): ");
+        scanf("%s", checkOutDate);
+ 
+        generalCounterBooking(json);
+ 
+ 
+        // Creating the booking object
+        cJSON* newCustomerBooking = cJSON_CreateObject();
+        cJSON_AddNumberToObject(newCustomerBooking, "bookingID", generalBookingIDCounter);
+        cJSON_AddNumberToObject(newCustomerBooking, "customerID", userID);
+        cJSON_AddStringToObject(newCustomerBooking, "roomID", roomID);
+        cJSON_AddStringToObject(newCustomerBooking, "reservedOn", reservedOn);
+        cJSON_AddStringToObject(newCustomerBooking, "checkIn", checkInDate);
+        cJSON_AddStringToObject(newCustomerBooking, "checkOut", checkOutDate);
+        cJSON_AddStringToObject(newCustomerBooking, "status", "Confirmed");
+ 
+ 
+        cJSON_AddItemToArray(bookings, newCustomerBooking); //Adding the new booking (the new customer's booking object) to data
+        bookingsNumber++;
+ 
+        // To change room Availability to Reserved
+        for (int i = 0; i < roomsNumber; i++)
+        {
+            cJSON* room = cJSON_GetArrayItem(rooms, i);
+            if (strcmp(cJSON_GetStringValue(cJSON_GetObjectItem(room, "ID")), roomID) == 0)
+            {
+                cJSON_ReplaceItemInObject(room, "status", cJSON_CreateString("Reserved"));
+                break;
+            }
+        }
+        writeFile(json);
+ 
+        printf("Your reservation has been confirmed!\nYour Booking ID is: %d\nWe are glad to serve you.\n", generalBookingIDCounter);
+        break;
+    }
+ 
+    case 3: //Cancel reservation incase choice 3
+    {
+        int inputBookingID;
+        cJSON* cancel = cJSON_CreateString("Canceled");
+ 
+        viewCurrentBooking(bookings, bookingsNumber, userID);
+        printf("To cancel, fill in the following:\n");
+ 
+        printf("Your BookingID: ");
+        scanf("%d", &inputBookingID);
+ 
+        printf("Your RoomID: ");
+        scanf("%s", roomID);
+ 
+ 
+        bool bookingFound = false; // Flag to track if booking was found
+        for (int i = 0; i < bookingsNumber; i++) {
+            cJSON* booking = cJSON_GetArrayItem(bookings, i);
+            cJSON* BookingIDData = cJSON_GetObjectItemCaseSensitive(booking, "bookingID");
+ 
+            if (cJSON_IsNumber(BookingIDData) && (int)cJSON_GetNumberValue(BookingIDData) == inputBookingID) {
+                // Update room status to "Canceled"
+                cJSON_ReplaceItemInObject(booking, "status", cancel);
+ 
+                bookingFound = true;
+                printf("\nYour Booking was canceled Successfully.\n");
+                break;
+            }
+        }
+       
+   
+        if (!bookingFound) {
+        printf("Sorry, the provided booking ID cannot be found.\nPlease make sure to type in the correct ID.\n");
+        }
+ 
+        // Switch room back to available
+        for (int i = 0; i < roomsNumber; i++)
+        {
+            cJSON* room = cJSON_GetArrayItem(rooms, i);
+            if (strcmp(cJSON_GetStringValue(cJSON_GetObjectItem(room, "ID")), roomID) == 0)
+            {
+                cJSON_ReplaceItemInObject(room, "status", cJSON_CreateString("Available"));
+                break;
+            }
+        }
+       
+        writeFile(json);
+        break;
+    }
+   
+    case 4: // View reservation history incase choice 4
+    {
+        printf("Your Booking History:\n");
+        printf("-------------------------------------------------------------\n");
+        printf("|%10s|%15s|%10s|%10s|%10s|\n", "Booking ID", "Room ID", "Check-In", "Check-Out", "Status");
+        printf("-------------------------------------------------------------\n");
+ 
+        for (int i = 0; i < bookingsNumber; i++)
+        {
+            cJSON* booking = cJSON_GetArrayItem(bookings, i);
+            if (cJSON_GetNumberValue(cJSON_GetObjectItemCaseSensitive(booking, "customerID")) == userID)
+            {
+                printf("|%10d|%15s|%10s|%10s|%10s|\n",
+                (int)cJSON_GetNumberValue(cJSON_GetObjectItem(booking, "bookingID")),
+                cJSON_GetStringValue(cJSON_GetObjectItem(booking, "roomID")),
+                cJSON_GetStringValue(cJSON_GetObjectItem(booking, "checkIn")),
+                cJSON_GetStringValue(cJSON_GetObjectItem(booking, "checkOut")),
+                cJSON_GetStringValue(cJSON_GetObjectItem(booking, "status")));
+               
+            }
+        }
+        printf("-------------------------------------------------------------\n");
+           
+        break;
+    }
+ 
+    case 5: // View current booking incase choice 5
+    {
+        viewCurrentBooking(bookings, bookingsNumber, userID);
+        break;
+    }
+    case 6:
+    {
+        editProfile(json, user, users);
+        break;
+    }
+    }
+    } while (choice >= 1 && choice <= 5);
+}
+////////////////
+
+
+//Sohaib Aboosbua
+//Admin
+////////////////
+// Implementing adminMenu function
+cJSON *adminMenu(cJSON *json, cJSON *user, cJSON *users) {
+    char room_ID[50];
+    int choice, is_logged_in = 1;
+    cJSON *rooms = cJSON_GetObjectItem(json, "rooms");
+    
+    //admin main menu
+    while (is_logged_in) {
+        printf("admin menu\n");
+        printf("1 - Register new users\n");
+        printf("2 - Manage existing users\n");
+        printf("3 - Manage hotel rooms\n");
+        printf("4 - Change password\n");
+        printf("5 - Log out\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        
+        switch (choice) {
+            case 1:
+                registerNewUser(users, json);
+                break;
+            case 2:
+                manageExistingUsers(json, users);
+                break;
+            case 3:
+                manageHotelRooms(rooms, json);
+                break;
+            case 4:
+                editProfile(json, user, users);
+                break;
+            case 5:
+                logOut(&is_logged_in, json);
+                break;
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+    }
+    return NULL;
+}
+
+// Generate ID code for new user
+int getNextUserID(cJSON *users) {
+    int maxID = 0;
+    if (users) {
+        int users_count = cJSON_GetArraySize(users);
+        for (int i = 0; i < users_count; i++) {
+            cJSON *user = cJSON_GetArrayItem(users, i);
+            cJSON *userID = cJSON_GetObjectItem(user, "userID");
+            if (userID && cJSON_IsNumber(userID)) {
+                int currentID = userID->valueint;
+                if (currentID > maxID) {
+                    maxID = currentID;
+                }
+            }
+        }
+    }
+    return maxID + 1;
+}
+
+//is username taken or no for new user
+int isUsernameTaken(cJSON *users,  char *username) {
+    if (users) {
+        int users_count = cJSON_GetArraySize(users);
+        for (int i = 0; i < users_count; i++) {
+            cJSON *user = cJSON_GetArrayItem(users, i);
+            cJSON *existingUsername = cJSON_GetObjectItem(user, "username");
+            if (existingUsername && strcmp(cJSON_GetStringValue(existingUsername), username) == 0) {
+                return 1; // Username is taken
+            }
+        }
+    }
+    return 0; // Username is not taken
+}
+
+//registering new user
+cJSON *registerNewUser(cJSON *users, cJSON *json) {
+    
+    char fullname_new[100], username_new[100], password_new[100], role_new[100];
+    int userID_new;
+    printf("You selected 'Register new users'\n");
+
+    printf("Enter the full name of the user: ");
+    // Clear input buffer (chatgpt)
+    int ch;
+    while ((ch = getchar()) != '\n' && ch != EOF);
+
+
+    fgets(fullname_new, sizeof(fullname_new), stdin); // stdin means the input
+    fullname_new[strcspn(fullname_new, "\n")] = '\0';  // Remove newline character
+
+    while (1) {
+        printf("Enter a username for the user: ");
+        fgets(username_new, sizeof(username_new), stdin);
+        username_new[strcspn(username_new, "\n")] = '\0';  // Remove newline character
+
+        if (isUsernameTaken(users, username_new)) {
+            printf("Username '%s' is already taken. Please choose a different username.\n", username_new);
+            continue;
+        } else {
+            break; // Username is new
+        }
+    }
+
+    printf("Enter a password for the user: ");
+    fgets(password_new, sizeof(password_new), stdin);
+    password_new[strcspn(password_new, "\n")] = '\0';  // Remove newline character
+
+    printf("Enter the role of the user: ");
+    fgets(role_new, sizeof(role_new), stdin);
+    role_new[strcspn(role_new, "\n")] = '\0';  // Remove newline character
+
+    int nextID = getNextUserID(users);// generate ID
+    
+    
+
+    cJSON *new_user = cJSON_CreateObject();// adding the info to the file
+    cJSON_AddNumberToObject(new_user, "userID", nextID);
+    cJSON_AddStringToObject(new_user, "fullname", fullname_new);
+    cJSON_AddStringToObject(new_user, "username", username_new);
+    cJSON_AddStringToObject(new_user, "password", password_new);
+    cJSON_AddStringToObject(new_user, "role", role_new);
+    cJSON_AddItemToObject(new_user, "status", cJSON_CreateNull());
+
+    printf("New userID: %s\n", userID_new);
+
+    cJSON_AddItemToArray(users, new_user);
+    writeFile(json);
+
+    
+    
+    return new_user;
+}
+// managing the users 
+cJSON *manageExistingUsers(cJSON *json, cJSON *users) {
+    char userStatuschange, input[10];
+    int userID_existing;
+    printf("You selected 'Manage existing users'\n");
+
+    while (1) {
+        
+        printf("Enter the userID of the user or press R to go back to main menu: ");
+        
+        scanf("%s", input);
+
+        
+        if (input[0] == 'R' || input[0] == 'r') {
+            printf("Returning to main menu\n");
+            return NULL;
+        }
+
+        // Convert input to integer 
+        if (sscanf(input, "%d", &userID_existing) != 1) {
+            printf("Invalid input. Please enter a valid userID.\n");
+            // Clear input buffer to handle invalid input
+            while (getchar() != '\n');
+            continue;
+        }
+
+        // Check if the user exists
+        int user_found = 0;
+        int user_count = cJSON_GetArraySize(users);
+        for (int i = 0; i < user_count; i++) {
+            cJSON *user = cJSON_GetArrayItem(users, i);
+            cJSON *userID = cJSON_GetObjectItem(user, "userID");
+
+            if (cJSON_IsNumber(userID) && userID->valueint == userID_existing) {
+                printf("This user exists\n");
+                user_found = 1;
+
+                // Change user status
+                while (1) {
+                    printf("Change user status to: enter a number (1 - null, 2 - reservee, 3 - checked-in) or press R to go back to main menu: ");
+                    if (scanf(" %c", &userStatuschange) != 1) {
+                        printf("Invalid input. Please enter a valid option.\n");
+                        
+                        while (getchar() != '\n');
+                        continue;
+                    }
+
+                    if (userStatuschange == 'R' || userStatuschange == 'r') {
+                        printf("Returning to main menu\n");
+                        return NULL;
+                    }
+                    //status choosing
+                    switch (userStatuschange) {
+                        case '1':
+                            cJSON_ReplaceItemInObject(user, "status", cJSON_CreateNull());
+                            writeFile(json);
+                            printf("User status changed to null\n");
+                            break;
+                        case '2':
+                            cJSON_ReplaceItemInObject(user, "status", cJSON_CreateString("reservee"));
+                            writeFile(json);
+                            printf("User status changed to reservee\n");
+                            break;
+                        case '3':
+                            cJSON_ReplaceItemInObject(user, "status", cJSON_CreateString("checked-in"));
+                            writeFile(json);
+                            printf("User status changed to checked-in\n");
+                            break;
+                        default:
+                            printf("Invalid choice. Please select a valid status.\n");
+                            continue;
+                    }
+                    break;  
+                }
+                break;  
+            }
+        }
+
+        if (!user_found) {
+            printf("User doesn't exist\n");
+        }
+
+        // Clear input buffer to avoid issues with scanf
+        while (getchar() != '\n');
+    }
+
+    return NULL;
+}
+
+//managing hotel rooms
+cJSON *manageHotelRooms(cJSON *rooms, cJSON *json) {
+    int manage_hotel_rooms_choice;
+    printf("You selected manage hotel rooms choose a number:\n ");
+    //managing hotel room menu
+    while (1) {
+        printf("1 - Add hotel room details\n");
+        printf("2 - Update hotel room details\n");
+        printf("3 - Remove hotel room details\n");
+        printf("4 - main menu\n");
+        printf("Enter your choice: ");
+        scanf("%d", &manage_hotel_rooms_choice);
+
+        switch (manage_hotel_rooms_choice) {
+            case 1:
+                addHotelRoom(rooms, json);
+                break;
+            case 2:
+                updateHotelRoom(rooms, json);
+                break;
+            case 3:
+                removeHotelRoom(rooms, json);
+                break;
+            case 4:
+                printf("returning to main menu...\n");
+                return NULL;
+                
+            default:
+                printf("Invalid choice\n");
+                break;
+        }
+    }
+    return NULL;
+}
+// adding new hotle room
+cJSON *addHotelRoom(cJSON *rooms, cJSON *json) {
+    char room_ID[50], new_room_type[100], new_room_floor[100], input[10];
+    int new_room_no, new_room_price;
+
+    while (1) {
+        printf("Enter A to continue or press R to return to the main menu: ");
+        scanf("%s", input);
+
+        
+        if (input[0] == 'R' || input[0] == 'r') {
+            printf("Returning to the main menu\n");
+            return NULL;
+        }
+
+        // Check if input is 'A' or 'a'
+        if (input[0] == 'A' || input[0] == 'a') {
+            
+
+            // Check for existing room number
+            printf("Enter new room number: ");
+            scanf("%d", &new_room_no);
+
+            int room_exists = 0;
+            int rooms_count = cJSON_GetArraySize(rooms);
+            for (int i = 0; i < rooms_count; i++) {
+                cJSON *room = cJSON_GetArrayItem(rooms, i);
+                cJSON *room_number = cJSON_GetObjectItem(room, "room_number");
+                if (room_number && room_number->valueint == new_room_no) {
+                    room_exists = 1;
+                    printf("Room with number '%d' already exists.\n", new_room_no);
+                    break;
+                }
+            }
+            if (room_exists) {
+                continue;
+            }
+
+            printf("Enter new room floor (Ground floor, First floor, Second floor): ");
+            scanf(" %[^\n]", new_room_floor); // reads the space
+            //checks the floor is written correctly
+            if (strcasecmp(new_room_floor, "Ground floor") != 0 &&
+                strcasecmp(new_room_floor, "First floor") != 0 &&
+                strcasecmp(new_room_floor, "Second floor") != 0) {
+                printf("Invalid floor entered. Please enter 'Ground floor', 'First floor', or 'Second floor'.\n");
+                continue;
+            }
+
+            printf("Enter new room type: ");
+            scanf("%s", new_room_type);
+            //checks the type is wrriten correctly
+            // Generate room ID based on the type and number
+            if (strcasecmp(new_room_type, "standard") == 0) {
+                snprintf(room_ID, sizeof(room_ID), "S%d-Standard", new_room_no);
+            } else if (strcasecmp(new_room_type, "deluxe") == 0) {
+                snprintf(room_ID, sizeof(room_ID), "D%d-Deluxe", new_room_no);
+            } else if (strcasecmp(new_room_type, "suite") == 0) {
+                snprintf(room_ID, sizeof(room_ID), "SU%d-Suite", new_room_no);
+            } else {
+                printf("Invalid room type entered.\n");
+                continue;
+            }
+
+            printf("Enter new room price: ");
+            scanf("%d", &new_room_price);
+
+            // Create new room object
+            cJSON *new_room = cJSON_CreateObject();
+            cJSON_AddStringToObject(new_room, "ID", room_ID);
+            cJSON_AddNumberToObject(new_room, "room_number", new_room_no);
+            cJSON_AddStringToObject(new_room, "room_floor", new_room_floor);
+            cJSON_AddStringToObject(new_room, "type", new_room_type);
+            cJSON_AddNumberToObject(new_room, "price", new_room_price);
+            cJSON_AddStringToObject(new_room, "status", "Available");
+
+            // Insert the new room in the correct position based on room number
+            int inserted = 0;
+            for (int i = 0; i < rooms_count; i++) {
+                cJSON *room = cJSON_GetArrayItem(rooms, i);
+                cJSON *room_number = cJSON_GetObjectItem(room, "room_number");
+                if (room_number && new_room_no < room_number->valueint) {
+                    cJSON_InsertItemInArray(rooms, i, new_room);
+                    inserted = 1;
+                    break;
+                }
+            }
+            if (!inserted) {
+                cJSON_AddItemToArray(rooms, new_room);
+            }
+            
+            writeFile(json);
+            printf("Room added successfully.\n");
+            break;
+        } else {
+            printf("Invalid input. Please enter A to continue or R to return to the main menu.\n");
+        }
+    }
+    return NULL;
+}
+
+//update hotel room status or price
+cJSON *updateHotelRoom(cJSON *rooms, cJSON *json) {
+    char room_ID[50], room_update_new[50], room_status_new[10];
+    int room_new_price;
+
+    printf("Enter the ID for the room or press R to go back to the main menu: ");
+    scanf("%s", room_ID);
+
+    
+    if (strcasecmp(room_ID, "R") == 0) {
+        printf("Returning to the main menu\n\n");
+        return NULL;
+    }
+
+    // Check if the room ID exists
+    int room_exists = 0;
+    if (rooms) {
+        int rooms_count = cJSON_GetArraySize(rooms);
+        for (int i = 0; i < rooms_count; i++) {
+            cJSON *room = cJSON_GetArrayItem(rooms, i);
+            cJSON *ID = cJSON_GetObjectItem(room, "ID");
+            if (ID && strcmp(cJSON_GetStringValue(ID), room_ID) == 0) {
+                room_exists = 1;
+                printf("Room with ID '%s' exists.\n", room_ID);
+
+                while (1) { 
+                    printf("What do you want to change? (price or status) or press R to go back to the main menu: ");
+                    scanf("%s", room_update_new);
+
+                    
+                    if (strcasecmp(room_update_new, "R") == 0) {
+                        printf("Returning to the main menu\n\n");
+                        return NULL;
+                    }
+
+                    //  updating price
+                    if (strcasecmp(room_update_new, "price") == 0) {
+                        printf("Enter the new price or press R to go back: ");
+                        scanf("%d", &room_new_price);
+                        if (room_new_price > 0) {
+                            cJSON_ReplaceItemInObject(room, "price", cJSON_CreateNumber(room_new_price));
+                            writeFile(json);
+                            printf("Price updated successfully.\n");
+                        } else {
+                            printf("Invalid price entered.\n");
+                        }
+                    }
+                    //  updating status
+                    else if (strcasecmp(room_update_new, "status") == 0) {
+                        while (1) {
+                            printf("Enter the number for the new status:\n");
+                            printf("1 - Available\n");
+                            printf("2 - Occupied\n");
+                            printf("3 - Reserved\n");
+                            printf("4 - Under Maintenance\n");
+                            printf("Or press R to go back to the main menu: ");
+                            scanf("%s", room_status_new);
+
+                            
+                            if (strcasecmp(room_status_new, "R") == 0) {
+                                printf("Returning to the main menu\n\n");
+                                return NULL;
+                            }
+
+                            // Convert room_status_new to an integer
+                            int status_choice = atoi(room_status_new);
+
+                            // Check for valid status choice
+                            if (status_choice == 1) {
+                                cJSON_ReplaceItemInObject(room, "status", cJSON_CreateString("available"));
+                                writeFile(json);
+                                printf("Status updated successfully to 'available'.\n");
+                            } else if (status_choice == 2) {
+                                cJSON_ReplaceItemInObject(room, "status", cJSON_CreateString("occupied"));
+                                writeFile(json);
+                                printf("Status updated successfully to 'occupied'.\n");
+                            } else if (status_choice == 3) {
+                                cJSON_ReplaceItemInObject(room, "status", cJSON_CreateString("reserved"));
+                                writeFile(json);
+                                printf("Status updated successfully to 'reserved'.\n");
+                            } else if (status_choice == 4) {
+                                cJSON_ReplaceItemInObject(room, "status", cJSON_CreateString("Under Maintenance"));
+                                writeFile(json);
+                                printf("Status updated successfully to 'Under Maintenance'.\n");
+                            } else {
+                                printf("Invalid choice. Please enter a valid number (1-4).\n");
+                                continue;
+                            }
+                            break;
+                        }
+                    } else {
+                        printf("Invalid choice. Please enter 'price' or 'status'.\n");
+                        continue;
+                    }
+                    break;
+                }
+            }
+        }
+    }
+
+    if (!room_exists) {
+        printf("Room with ID '%s' does not exist.\n", room_ID);
+    }
+
+    return NULL;
+}
+
+// remove hotel room
+cJSON *removeHotelRoom(cJSON *rooms, cJSON *json) {
+    char room_ID[50], yesNo_delete_room[10];
+    int found = 0;
+
+    while (1) {
+        printf("Enter the ID for the room or press R to go back to main menu: ");
+        scanf("%s", room_ID);
+        
+        // Check if user wants to return to the main menu
+        if (strcmp(room_ID, "R") == 0 || strcmp(room_ID, "r") == 0) {
+            printf("Returning to main menu\n\n");
+            return NULL;
+        }
+        //  Check if the room ID exists
+        if (rooms) {
+            int rooms_count = cJSON_GetArraySize(rooms);
+            for (int i = 0; i < rooms_count; i++) {
+                cJSON *room = cJSON_GetArrayItem(rooms, i);
+                cJSON *ID = cJSON_GetObjectItem(room, "ID");
+                if (ID && strcmp(cJSON_GetStringValue(ID), room_ID) == 0) {
+                    found = 1;
+                    printf("Are you sure you want to delete this room (YES/NO): ");
+                    scanf("%s", yesNo_delete_room);
+                    
+                    if (strcasecmp(yesNo_delete_room, "NO") == 0) {
+                        printf("Returning\n");
+                        break;
+                    } else if (strcasecmp(yesNo_delete_room, "YES") == 0) {
+                        cJSON_DeleteItemFromArray(rooms, i);
+                        writeFile(json); 
+                        printf("Room has been deleted successfully\n");
+                        return NULL; // Exit after successful deletion
+                    }
+                }
+            }
+            if (!found) {
+                printf("Room ID is not available\n");
+            }
+        }
+    }
+    return NULL;
+}
+// logging out
+cJSON *logOut(int *is_logged_in, cJSON *json) {
+    char log_out_request[50];
+    printf("Are you sure you want to log out? (yes/no): ");
+    scanf("%s", log_out_request);
+
+    if (strcmp(log_out_request, "yes") == 0) {
+        *is_logged_in = 0;
+        printf("Logged out\n");
+    } else if (strcmp(log_out_request, "no") == 0) {
+        printf("Returning to main menu\n");
+    } else {
+        printf("Invalid input\n");
+    }
+    return NULL;
+}
+////////////////
+
+
+//Osamah Ahmed
+//Guest
+////////////////
+cJSON *guestMenu(cJSON *json){
     int count = 1;
     char guestViewChoice[2];
 
@@ -1020,11 +1791,9 @@ void guestMenu(cJSON *json){
         while (1){
             printf("Enter 0 to exit: ");
             
-            
-            clearInputBuffer();
             fgets(guestViewChoice, sizeof(guestViewChoice), stdin);
 
-            if (strcmp(guestViewChoice, "0") == 0){
+            if (atoi(guestViewChoice) == 0){
                 system("cls");
                 return NULL;
             }
@@ -1033,9 +1802,13 @@ void guestMenu(cJSON *json){
         printf("No room data found!");
     }
     free(rooms);
-    return NULL;
 }
+////////////////
 
+
+//Mahmood Qaid
+//Main
+////////////////
 cJSON* logIn(cJSON *json){
     //initialize variables
     char enteredUsername[16];
@@ -1052,7 +1825,7 @@ cJSON* logIn(cJSON *json){
     while (attempts + 1 > 0){
         //prompt user credentials
         printf("Enter your username: ");
-        scanf("%15s", enteredUsername); //scanf
+        scanf("%15s", enteredUsername);
 
         printf("Enter your password: ");
         int i = 0;
@@ -1083,28 +1856,28 @@ cJSON* logIn(cJSON *json){
 
                 cJSON *username = cJSON_GetObjectItem(user, "username");
                 cJSON *password = cJSON_GetObjectItem(user, "password");
-                cJSON *role = cJSON_GetObjectItem(user, "role");
                 cJSON *fullname = cJSON_GetObjectItem(user, "fullname");
+                cJSON *role = cJSON_GetObjectItem(user, "role");
 
                 char *firstname = strtok(cJSON_GetStringValue(fullname), " ");
+
                 if (strcmp(cJSON_GetStringValue(username), enteredUsername) == 0 &&
                     strcmp(cJSON_GetStringValue(password), enteredPassword) == 0) {
 
                     system("cls");
-                    printf("Hello %s!\n", firstname);
-
+                    printf("Hello again %s!\n", firstname);
                     
                     if (strcmp(cJSON_GetStringValue(role), "1") == 0){
-                        isLoggedIn = true;
-                        printf("Admin\n");
+                        adminMenu(json, user, users);
+                        return NULL;
                     }
                     else if (strcmp(cJSON_GetStringValue(role), "2") == 0){
                         staffMenu(json, user, users);
-                        return false;
+                        return NULL;
                     }
                     else if (strcmp(cJSON_GetStringValue(role), "3") == 0){
-                        isLoggedIn = true;
-                        customerMenu(json, user);
+                        customerMenu(json, user, users);
+                        return NULL;
                     }
                     else {
                         printf("\nError reading user role!\n");
@@ -1117,11 +1890,13 @@ cJSON* logIn(cJSON *json){
 
         if (!isLoggedIn){
             if (attempts == 0){
-                printf("\nNo more attempts, try again later!");
+                system("cls");
+                printf("No more attempts, try again later!");
                 break;
             }
             else {
-                printf("\nInvalid username or password! Try again (%d)\n", attempts);
+                system("cls");
+                printf("Invalid username or password! Try again (%d)\n", attempts);
                 attempts--;
             }
         }
@@ -1132,7 +1907,7 @@ cJSON* logIn(cJSON *json){
 int main() {
 
     //initialize variables
-    char mainMenuChoice[2];
+    char mainMenuChoice[10];
 
     //file path
     const char *filename = "data.txt";
@@ -1170,14 +1945,17 @@ int main() {
         return 1;
     }
 
-    printf("Hi! Welcome to Sheba Hotel App\n");
         
     while (1){    
-        printf("1.log in\n2.guest\n3.Exit\n"); 
-
+        printf("╔════════════════════════════╗\n");
+        printf("║ Welcome to Sheba Hotel App ║\n");
+        printf("╚════════════════════════════╝\n");
+        
+        printf("1.log in\n2.guest\n3.Exit\n");
         fgets(mainMenuChoice, sizeof(mainMenuChoice), stdin);
 
-        switch (mainMenuChoice)
+        system("cls");
+        switch (atoi(mainMenuChoice))
         {
         case 1:
             logIn(json);
@@ -1188,14 +1966,15 @@ int main() {
             break;
 
         case 3:
-            printf("Exiting...\n");
+            printf("Goodbye...\n");
             return false;
+            break;
         
         default:
             system("cls");
             printf("Invalid option!\n");
         }
-
+        clearInputBuffer();
     }
 
     //clean memory up
@@ -1204,3 +1983,4 @@ int main() {
 
     return 0;
 }
+////////////////

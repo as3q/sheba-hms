@@ -15,7 +15,7 @@
 			"status":	"N/A"
 		}, {
 			"userID":	3,
-			"fullname":	"Mahmood Qaid",
+			"fullname":	"Mahmood",
 			"username":	"customer1",
 			"password":	"customer1",
 			"role":	"3",
